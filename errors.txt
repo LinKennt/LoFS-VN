@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 38: end of line expected.
+    ni "Умь..." show shadow:
+                ^
+
+File "game/script.rpy", line 40: end of line expected.
+    with easeinleft "М-меня зовут Нира... А т-ты?.."
+                    ^
+
+Ren'Py Version: Ren'Py 7.4.5.1648
+Mon Jun  7 13:12:10 2021
