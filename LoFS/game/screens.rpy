@@ -388,23 +388,23 @@ screen main_menu():
 
         # Загрузить
 
-        hotspot (38, 260, 366, 40) action ShowMenu("load")
+        hotspot (38, 260, 368, 40) action ShowMenu("load")
 
         # Настройки
 
-        hotspot (38, 300, 366, 40) action ShowMenu("preferences")
+        hotspot (38, 300, 368, 40) action ShowMenu("preferences")
 
         # Об игре
 
-        hotspot (38, 340, 366, 40) action ShowMenu("about")
+        hotspot (38, 340, 368, 40) action ShowMenu("about")
 
         # Выход
 
-        hotspot (38, 609, 366, 40) action Quit(confirm=True)
+        hotspot (38, 609, 368, 40) action Quit(confirm=True)
 
         # Помощь
 
-        hotspot (38, 569, 366, 40) action ShowMenu("help")
+        hotspot (38, 569, 368, 40) action ShowMenu("help")
 
     ## Старая версия меню
     # add gui.main_menu_background
