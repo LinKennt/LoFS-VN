@@ -1,42 +1,88 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 213, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 498, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 498, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 508, in _execute_python_hide
-    renpy.load("_reload-2")
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/screens.rpy", line 722, in execute
+    screen save():
+  File "game/screens.rpy", line 722, in execute
+    screen save():
+  File "game/screens.rpy", line 726, in execute
+    use file_slots(_("Сохранить"))
+  File "game/screens.rpy", line 736, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 736, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 740, in execute
+    use game_menu(title):
+  File "game/screens.rpy", line 476, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 476, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 532, in execute
+    imagemap:
+  File "game/screens.rpy", line 589, in execute
+    if _(in_replay):
+  File "game/screens.rpy", line 589, in <module>
+    if _(in_replay):
+NameError: name 'in_replay' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 213, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 498, in script
-    python hide:
+  File "renpy/common/_layout/screen_load_save.rpym", line 35, in script
+    $ ui.interact()
   File "renpy/ast.py", line 922, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "renpy/python.py", line 2218, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/00keymap.rpy", line 498, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 508, in _execute_python_hide
-    renpy.load("_reload-2")
-  File "renpy/loadsave.py", line 769, in load
-    log.unfreeze(roots, label="_after_load")
-  File "renpy/python.py", line 2173, in unfreeze
-    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
-  File "renpy/python.py", line 2005, in rollback
-    self.load_failed()
-  File "renpy/python.py", line 1923, in load_failed
-    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "renpy/common/_layout/screen_load_save.rpym", line 35, in <module>
+    $ ui.interact()
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3213, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3630, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 432, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3630, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 443, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 631, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 722, in execute
+    screen save():
+  File "game/screens.rpy", line 722, in execute
+    screen save():
+  File "game/screens.rpy", line 726, in execute
+    use file_slots(_("Сохранить"))
+  File "game/screens.rpy", line 736, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 736, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 740, in execute
+    use game_menu(title):
+  File "game/screens.rpy", line 476, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 476, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 532, in execute
+    imagemap:
+  File "game/screens.rpy", line 589, in execute
+    if _(in_replay):
+  File "game/screens.rpy", line 589, in <module>
+    if _(in_replay):
+NameError: name 'in_replay' is not defined
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.4.5.1648
 Library of Furry Stories 0.1.1
-Tue Jun  8 14:42:20 2021
+Thu Jun 10 18:02:36 2021

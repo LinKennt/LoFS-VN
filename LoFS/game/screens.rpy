@@ -374,7 +374,7 @@ screen main_menu():
 
         hover "gui/main_menu_hover.png"
 
-        
+
 
         # Команда hotspot показывает РенПай где на картинке находится кнопка и что она делает
 
@@ -398,13 +398,19 @@ screen main_menu():
 
         hotspot (38, 340, 368, 40) action ShowMenu("about")
 
-        # Выход
-
-        hotspot (38, 609, 368, 40) action Quit(confirm=True)
-
         # Помощь
 
-        hotspot (38, 569, 368, 40) action ShowMenu("help")
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## Помощь не необходима и не относится к мобильным устройствам.
+            hotspot (38, 569, 368, 40) action ShowMenu("help")
+        # Выход
+
+        if renpy.variant("pc"):
+
+            ## Кнопка выхода блокирована в iOS и не нужна на Android и в веб-
+            ## версии.
+            hotspot (38, 609, 368, 40) action Quit(confirm=not main_menu)
 
     ## Старая версия меню
     # add gui.main_menu_background
@@ -521,12 +527,94 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+# imagemap создает группу кнопок и других элементов в меню (ползунки, переключатели и т.д.)
 
-    textbutton _("Вернуться"):
-        style "return_button"
+    imagemap:
 
-        action Return()
+        # Команда hotspot показывает РенПай где на картинке находится кнопка и что она делает
+
+        # Четыре числа в скобках - кордината х, координата у, ширина, высота кнопки
+
+        # После action указывается действие, которое кнопка выполняет
+
+        # Начать игру
+
+        if main_menu:
+
+            # idle  указывает картинку с кнопками
+
+            idle "gui/main_menu_normal.png"
+
+            # hover указывает картинку с подсвеченными кнопками
+
+            hover "gui/main_menu_hover.png"
+
+            hotspot (38, 220, 368, 40) action Start()
+
+
+        else:
+        
+            # idle  указывает картинку с кнопками
+
+            idle "gui/main_game_menu_normal.png"
+
+            # hover указывает картинку с подсвеченными кнопками
+
+            hover "gui/main_game_menu_hover.png"
+        
+            hotspot (38, 180, 368, 40) action ShowMenu("history")
+            
+            hotspot (38, 220, 368, 40) action ShowMenu("save")
+        
+        # # idle  указывает картинку с кнопками
+
+        # idle "gui/main_game_menu_normal.png"
+
+        # # hover указывает картинку с подсвеченными кнопками
+
+        # hover "gui/main_game_menu_hover.png"
+
+        # Загрузить
+
+        hotspot (38, 260, 368, 40) action ShowMenu("load")
+
+        # Настройки
+
+        hotspot (38, 300, 368, 40) action ShowMenu("preferences")
+
+        # Об игре
+
+        hotspot (38, 340, 368, 40) action ShowMenu("about")
+        
+        if _in_replay:
+        
+            hotspot (38, 420, 368, 40) action EndReplay(confirm=True)
+
+        elif not main_menu:
+
+                hotspot (38, 380, 368, 40) action MainMenu()
+
+        # Помощь
+
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## Помощь не необходима и не относится к мобильным устройствам.
+            hotspot (38, 569, 368, 40) action ShowMenu("help")
+        # Выход
+
+        if renpy.variant("pc"):
+
+            # Кнопка выхода блокирована в iOS и не нужна на Android и в веб-
+            # версии.
+            hotspot (38, 609, 368, 40) action Quit(confirm=not main_menu)
+
+    ##Старая версия меню
+    # use navigation
+
+    # textbutton _("Вернуться"):
+        # style "return_button"
+
+        # action Return()
 
     label title
 
@@ -554,7 +642,7 @@ style game_menu_outer_frame:
     background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
-    xsize 280
+    xsize 416
     yfill True
 
 style game_menu_content_frame:
