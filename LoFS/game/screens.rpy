@@ -358,26 +358,75 @@ screen main_menu():
     ## заменять этот.
     tag menu
 
-    add gui.main_menu_background
+# imagemap создает группу кнопок и других элементов в меню (ползунки, переключатели и т.д.)
 
-    ## Эта пустая рамка затеняет главное меню.
-    frame:
-        style "main_menu_frame"
+    imagemap:
 
-    ## Оператор use включает отображение другого экрана в данном. Актуальное
-    ## содержание главного меню находится на экране навигации.
-    use navigation
+        # ground  указывает картинку с фоном
 
-    if gui.show_name:
+        ground "gui/main_menu.png"
 
-        vbox:
-            style "main_menu_vbox"
+        # idle  указывает картинку с кнопками
 
-            text "[config.name!t]":
-                style "main_menu_title"
+        idle "gui/main_menu_normal.png"
 
-            text "[config.version]":
-                style "main_menu_version"
+        # hover указывает картинку с подсвеченными кнопками
+
+        hover "gui/main_menu_hover.png"
+
+        
+
+        # Команда hotspot показывает РенПай где на картинке находится кнопка и что она делает
+
+        # Четыре числа в скобках - кордината х, координата у, ширина, высота кнопки
+
+        # После action указывается действие, которое кнопка выполняет
+
+        # Начать игру
+
+        hotspot (38, 220, 368, 40) action Start()
+
+        # Загрузить
+
+        hotspot (38, 260, 366, 40) action ShowMenu("load")
+
+        # Настройки
+
+        hotspot (38, 300, 366, 40) action ShowMenu("preferences")
+
+        # Об игре
+
+        hotspot (38, 340, 366, 40) action ShowMenu("about")
+
+        # Выход
+
+        hotspot (38, 609, 366, 40) action Quit(confirm=True)
+
+        # Помощь
+
+        hotspot (38, 569, 366, 40) action ShowMenu("help")
+
+    ## Старая версия меню
+    # add gui.main_menu_background
+
+    # ## Эта пустая рамка затеняет главное меню.
+    # frame:
+        # style "main_menu_frame"
+
+    # ## Оператор use включает отображение другого экрана в данном. Актуальное
+    # ## содержание главного меню находится на экране навигации.
+    # use navigation
+
+    # #if gui.show_name:
+
+        # vbox:
+            # style "main_menu_vbox"
+
+            # text "[config.name!t]":
+                # style "main_menu_title"
+
+            # text "[config.version]":
+                # style "main_menu_version"
 
 
 style main_menu_frame is empty
